@@ -1,7 +1,7 @@
 /*Cancellation Rates.
 
-Writing a query to return the publication and cancellation rat
-e for each user*/
+Writing a query to return the publication and cancellation 
+rate for each user*/
 
 create table users (user_id integer, action varchar(9), dates
 date);
