@@ -1,0 +1,40 @@
+/*Changes in Net Worth
+
+Writing a query to return the change in net worth for each use
+r, ordered by decreasing net change.*/
+
+create table transactions (sender integer, receiver integer, amount decimal, transaction_date date);
+
+insert into transactions with names as
+(select 5,2,10,'12-feb-20' from dual union all
+ select 1,3,15,'13-feb-20' from dual union all
+ select 2,1,20,'13-feb-20' from dual union all
+ select 2,3,25,'14-feb-20' from dual union all
+ select 3,1,20,'15-feb-20' from dual union all
+ select 3,2,15,'15-feb-20' from dual union all
+ select 1,4,5,'16-feb-20' from dual)
+ select * from names;
+
+select * from transactions; --initial data
+
+create table debited as
+select sender, sum(amount) as debited
+from transactions
+group by sender
+order by sender;
+
+create table credited as
+select receiver, sum(amount) as credited
+from transactions
+group by receiver
+order by receiver;
+
+select * from debited;
+select * from credited;
+
+select coalesce(d.sender,c.receiver) as user_id,
+coalesce(c.credited,0)-coalesce(d.debited,0) as net_change
+from credited c
+full outer join debited d
+on c.receiver=d.sender
+order by 2 desc; --query
