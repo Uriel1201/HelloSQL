@@ -1,4 +1,4 @@
-/* 5. Super Users
+/* Super Users
 
 A company defines its super users as
 those who have made at least two
