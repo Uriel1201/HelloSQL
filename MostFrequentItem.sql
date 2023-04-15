@@ -1,6 +1,6 @@
 /*Most Frequent Item
 
-write a query to return the most frequent item
+writing a query to return the most frequent item
 ordered on each date.*/
 
 create table items  (dates date, item varchar (9));
