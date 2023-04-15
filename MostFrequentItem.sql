@@ -27,3 +27,14 @@ create table counts as
        order by dates;
 
 select * from counts;
+
+create table ranks as
+select dates, item, rank() over
+       (partition by dates order by counts desc) rank
+        from counts;
+
+select * from ranks;
+
+select dates, item
+       from ranks
+       where rank = 1;
