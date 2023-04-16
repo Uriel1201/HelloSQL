@@ -1,3 +1,5 @@
+
+
 create table friends_p6 (user_id integer, friend integer);
 
 create table likes_p6 (user_id integer, page_likes char);
@@ -28,21 +30,10 @@ select * from names;
 select * from friends_p6;
 select * from likes_p6;
 
-create table user_p6 as
-    select f.user_id, l.page_likes as user_likes,
-           f.friend
+create table Flikes_p6 as
+    select f.user_id, f.friend, l.page_likes as friend_likes
            from friends_p6 f
            inner join likes_p6 l
-           on f.user_id = l.user_id;
+           on f.friend = l.user_id;
 
-select * from user_p6;
-
-create table equivalent_p6 as 
-select a.user_id, a.user_likes, a.friend,
-       b.page_likes as friend_likes 
-       from user_p6 a
-       left join likes_p6 b
-       on a.friend = b.user_id and a.user_likes = b.page_likes
-       order by 1, 3, 2;
-
-select * from equivalent_p6;
+select * from Flikes_p6;
