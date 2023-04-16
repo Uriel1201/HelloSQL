@@ -54,7 +54,7 @@ select a.user_id, a.friend, a.friend_likes,
 
 select * from equals_p6;
 
-select distinct user_id, friend_likes 
+select distinct user_id, friend_likes as recommendation
        from equals_p6 
        where user_likes is null
        order by 1;
