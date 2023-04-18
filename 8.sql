@@ -64,9 +64,7 @@ select a.user_id, c.join_date, b.access_date as to_Premium_date
        left join Premium_p8 b
           on a.user_id = b.user_id 
        left join users_p8 c
-          on a.user_id = c.user_id 
-       where (b.access_date - a.access_date) > 0
-              or (b.access_date - a.access_date) is null
+          on a.user_id = c.user_id
        order by 1;
 
 select * from F2toP_users_p8;
