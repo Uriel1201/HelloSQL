@@ -46,11 +46,11 @@ select user_id,
 
 select * from rank_p8;
 
-create table BeginF2_p8 as
+create table BeginFromF2_p8 as
 select * from rank_p8 
           where rank_date = 1 and type = 'F2';
 
-select * from BeginF2_p8;
+select * from BeginFromF2_p8;
 
 create table Premium_p8 as
 select * from events_p8 
@@ -60,13 +60,13 @@ select * from Premium_p8;
 
 create table F2toP_users_p8 as
 select a.user_id, c.join_date, b.access_date as to_Premium_date
-from BeginF2_p8 a 
-left join Premium_p8 b
-on a.user_id = b.user_id 
-left join users_p8 c
-on a.user_id = c.user_id 
-where (b.access_date - a.access_date) > 0
-      or (b.access_date - a.access_date) is null
-order by 1;
+       from BeginFromF2_p8 a 
+       left join Premium_p8 b
+          on a.user_id = b.user_id 
+       left join users_p8 c
+          on a.user_id = c.user_id 
+       where (b.access_date - a.access_date) > 0
+              or (b.access_date - a.access_date) is null
+       order by 1;
 
 select * from F2toP_users_p8;
