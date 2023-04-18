@@ -70,3 +70,7 @@ select a.user_id, c.join_date, b.access_date as to_Premium_date
        order by 1;
 
 select * from F2toP_users_p8;
+
+select round (1.0 * sum (case when (to_Premium_date - join_date) <= 30 then 1 else 0 end) / count (*), 2) 
+       as upgrade_rate
+       from F2toP_users_p8;
