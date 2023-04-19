@@ -18,7 +18,7 @@ insert into users_p4 with names as (
     select 1, 'Publish', '19-feb-20' from dual
 ) select * from names;
 
-select * from users;
+select * from users_p4;
 
 create table numbers_p4 as
 select id, action_date, 
