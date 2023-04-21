@@ -39,7 +39,7 @@ select *
 
 select * from months_p14;
 
-select a.id, a.pay_month, a.salary, sum (b.salary)
+select a.id, a.pay_month, a.salary, sum (b.salary) as cumulative_salary
     from months_p14 a 
     left join months_p14 b
     on a.id = b.id and
