@@ -30,7 +30,7 @@ from employee_p14
 select * 
     from ranks_p14;
 
-/* Dropping the last recent month and adding de first 3 months */
+/* Dropping the last recent month and adding the first 3 months */
 create table months_p14 as
 select * 
     from ranks_p14 
