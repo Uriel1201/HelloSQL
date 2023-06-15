@@ -1,3 +1,8 @@
+/* 13. Rank Without Rank.
+Writing a query to rank scores in the
+following table without using a window
+function. */ 
+
 create table scores_p13 (id integer, score number);
 
 insert into scores_p13 with names as (
