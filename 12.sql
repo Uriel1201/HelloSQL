@@ -1,3 +1,13 @@
+/* 12. Hacker Scores.
+
+Writing  a
+query to return the hacker ID, name, and
+total score (the sum of maximum scores
+for each challenge completed) ordered by descending score, and by ascending
+hacker ID in the case of score tie. Do not
+display entries for hackers with a score
+of zero. */ 
+
 create table hackers_p12 (hacker_id integer, name varchar(10));
 
 insert into hackers_p12 with names as (
