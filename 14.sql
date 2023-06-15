@@ -1,4 +1,5 @@
 /* 14. Cumulative Salary.
+
 Writing a query to get, for each month, the
 cumulative sum of an employee’s salary
 over a period of 3 months, excluding the
