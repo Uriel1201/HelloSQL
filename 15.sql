@@ -1,3 +1,8 @@
+/* 15. Team Standings.
+
+Writing a query to return the scores of
+each team */ 
+
 create table teams_p15 (team_id integer, team_name varchar (20));  
 create table matches_p15 (match_id integer, host_team integer, guest_team integer, host_goals integer, guest_goals integer);
 
