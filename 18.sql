@@ -1,6 +1,11 @@
-/* The same table of problem 17 */
-create table stations_p17 (id integer, city varchar (20), states varchar (20), latitude number, longitude number);
+/* 18. Maximally-separated Cities.
 
+Writing a query to return  the furthest-separated
+pair of cities for each state and the corresponding 
+distance */ 
+
+create table stations_p17 (id integer, city varchar (20), states varchar (20), latitude number, longitude number);
+-- The same table of problem 17
 insert into stations_p17 with names as (
     select 1, 'Asheville',      'North Carolina', 35.6, 82.6  from dual union all 
     select 2, 'Burlington',     'North Carolina', 36.1, 79.4  from dual union all
