@@ -1,3 +1,9 @@
+/* 17. Median Latitude. 
+
+Writint a query to return the median
+latitude of weather stations from each
+state. */ 
+
 create table stations_p17 (id integer, city varchar (20), states varchar (20), latitude number, longitude number);
 
 insert into stations_p17 with names as (
