@@ -11,7 +11,7 @@ insert into attendance_p20 with names as (
     select '12-JAN-20', 188  from dual
 ) select * from names;
 
-select row_number() over (order by date) as id as
+create table index_p20 as
 select row_number() over (order by event_date) as id, event_date, visitors 
     from attendance_p20;
 
