@@ -1,3 +1,9 @@
+/* 21. Commonly Purchased Together.
+
+Writing a query to return the names and purchase
+frequency of the top three pairs of
+products most often bought together. */
+
 create table orders_p21 (order_id integer, customer_id integer, product_id integer); 
 
 create table products_p21 (id integer, name char);
