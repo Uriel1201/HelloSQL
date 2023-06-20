@@ -1,3 +1,10 @@
+/* 23. Rolling Sum Salary.
+writing a query to return a table that displays, for
+each month in the first half of the year,
+the rolling sum of the employee’s salary
+for that month and the following two
+months. */ 
+
 create table salary_p23 (months integer, salary number); 
 
 insert into salary_p23 with names as (
