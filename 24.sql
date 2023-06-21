@@ -1,3 +1,8 @@
+/* 24. Taxi Cancel Rate.
+Writing a query to return the
+cancellation rate in the first two days in
+October. */
+
 create table trips_p24 (trip_id integer, rider_id integer, driver_id integer, status varchar(25), request_date date);
 
 create table users_p24 (user_id integer, banned varchar(3), type varchar(7));
