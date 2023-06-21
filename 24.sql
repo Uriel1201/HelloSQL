@@ -1,4 +1,5 @@
 /* 24. Taxi Cancel Rate.
+
 Writing a query to return the
 cancellation rate in the first two days in
 October. */
