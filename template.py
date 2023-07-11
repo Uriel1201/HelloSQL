@@ -1,6 +1,6 @@
 # pip install pandas
 # pip install SQLAlchemy
-# pip install cxOracle
+# pip install cx_Oracle
 
 import pandas as pd 
 import cx_Oracle
