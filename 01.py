@@ -38,7 +38,7 @@ users['publishes'] = np.where(users['action']=='publish',1,0])
 users
 
 num_actions = users.groupby('user_id').sum()
-num_actions['cancel_rate'] = num_actions['cancels'] / num_actions['starts']
+num_actions['cancel_rate']  = num_actions['cancels'] / num_actions['starts']
 num_actions['publish_rate'] = num_actions['publishes'] / num_actions['starts']
 
 num_actions[['publish_rate','cancel_rate']]
