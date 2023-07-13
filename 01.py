@@ -32,8 +32,8 @@ users = pd.DataFrame(data)
 users
 '''
 
-users['starts']    = np.where(users['action']=='start',1,0])
-users['cancels']   = np.where(users['action']=='cancel',1,0])
+users['starts']    = np.where(users['action']=='start',  1,0])
+users['cancels']   = np.where(users['action']=='cancel', 1,0])
 users['publishes'] = np.where(users['action']=='publish',1,0])
 users
 
