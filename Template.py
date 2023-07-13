@@ -1,9 +1,11 @@
 
 # pip install pandas
+# pip install numpy
 # pip install SQLAlchemy
 # pip install cx_Oracle
 
 import pandas as pd 
+import numpy  as np
 import cx_Oracle
 import sqlalchemy
 from sqlalchemy.exc import SQLAlchemyError
