@@ -18,9 +18,9 @@ select 3,'cancel','06-jan-20' from dual union all
 select 4,'start','07-jan-20' from dual)
 select * from names;
 
-select * from users; 
+select * from users_p1; 
 
-create table totals as
+create table totals_p1 as
 select user_id, sum(case when action='start' then 1 else 0 end) as starts,
 sum(case when action='cancel' then 1 else 0 end) as cancels,
 sum(case when action='publish' then 1 else 0 end) as publishes
@@ -28,7 +28,7 @@ from users
 group by user_id
 order by user_id;
 
-select * from totals
+select * from totals_p1
 
 select user_id, 1.0*publishes/starts as publish_rate, 1.0*cancels/starts as cancel_rate
-from totals;
+from totals_p1
