@@ -31,4 +31,4 @@ order by user_id;
 select * from totals_p1
 
 select user_id, 1.0*publishes/starts as publish_rate, 1.0*cancels/starts as cancel_rate
-from totals_p1
+from totals_p1;
