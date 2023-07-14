@@ -1,3 +1,10 @@
+'''
+1. Cancellation Rates.
+
+Writing a query to return the publication and cancellation 
+rate for each user
+'''
+
 # pip install pandas
 # pip install numpy
 # pip install SQLAlchemy
