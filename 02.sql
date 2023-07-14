@@ -19,13 +19,13 @@ select * from transactions_p2;
 
 create table debited_p2 as
 select sender, sum(amount) as debited
-from transactions
+from transactions_p2
 group by sender
 order by sender;
 
 create table credited_p2 as
 select receiver, sum(amount) as credited
-from transactions
+from transactions_p2
 group by receiver
 order by receiver;
 
@@ -34,7 +34,7 @@ select * from credited_p2;
 
 select coalesce(d.sender,c.receiver) as user_id,
 coalesce(c.credited,0)-coalesce(d.debited,0) as net_change
-from credited c
-full outer join debited d
+from credited_p2 c
+full outer join debited_p2 d
 on c.receiver=d.sender
 order by 2 desc; 
