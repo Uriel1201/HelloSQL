@@ -28,7 +28,7 @@ credited.reset_index(inplace = True)
 debited.rename(columns  = {'sender'  :'user_id', 'amount':'debited'},  inplace = True)
 credited.rename(columns = {'receiver':'user_id', 'amount':'credited'}, inplace = True)
 
-changes = pd.merge(debited, credited, on 'user_id', how = 'outer')
+changes = pd.merge(debited, credited, on = 'user_id', how = 'outer')
 changes['debited']  = changes['debited'].replace(np.nan, 0)
 changes['credited'] = changes['credited'].replace(np.nan,0)
 
