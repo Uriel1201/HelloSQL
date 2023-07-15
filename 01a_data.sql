@@ -1,7 +1,8 @@
-/* 1. Cancellation Rates.
+/* 
+1. Cancellation Rates.
 
 Writing a query to return the publication and cancellation 
-rate for each user*/
+rate for each user. */
 
 create table users_p1 (user_id integer, action varchar(9), dates
 date);
