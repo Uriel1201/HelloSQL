@@ -27,8 +27,7 @@ except SQLAlchemyError as e:
 
 users['starts']    = np.where(users['action']=='start',  1,0])
 users['cancels']   = np.where(users['action']=='cancel', 1,0])
-users['publishes'] = np.where(users['action']=='publish',1,0])
-users
+users['publishes'] = np.where(users['action']=='publish',1,0]
 
 num_actions = users.groupby('user_id').sum()
 num_actions['cancel_rate']  = num_actions['cancels'] / num_actions['starts']
