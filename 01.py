@@ -26,19 +26,6 @@ try:
 except SQLAlchemyError as e:
   print(e)
 
-'''
-still don't you have the table in any database?
-data = {'user_id': [1,1,2,1,1,2,3,3,4],
-        'action' : ['start','cancel','start','start',
-                    'publish','publish','start','cancel','start'],
-        'dates'  : ['01-JAN-20','02-JAN-20','03-JAN-20','03-JAN-20',
-                    '04-JAN-20','04-JAN-20','05-JAN-20','06-JAN-20',
-                    '07-JAN-20']
-        }
-users = pd.DataFrame(data)
-users
-'''
-
 users['starts']    = np.where(users['action']=='start',  1,0])
 users['cancels']   = np.where(users['action']=='cancel', 1,0])
 users['publishes'] = np.where(users['action']=='publish',1,0])
