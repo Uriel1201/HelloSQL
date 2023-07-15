@@ -17,24 +17,24 @@ insert into items_p3 with names as (
     select '02-jan-20', 'orange' from dual
     ) select * from names;
 
-select *  from items;
+select *  from items_p3;
 
 
-create table counts as 
+create table counts_p3 as 
        select dates, item, count(*) as counts 
-       from items
+       from items_p3
        group by dates, item 
        order by dates;
 
-select * from counts;
+select * from counts_p3;
 
-create table ranks as
+create table ranks_p3 as
 select dates, item, rank() over
        (partition by dates order by counts desc) rank
-        from counts;
+        from counts_p3;
 
-select * from ranks;
+select * from ranks_p3;
 
 select dates, item
-       from ranks
+       from ranks_p3
        where rank = 1;
