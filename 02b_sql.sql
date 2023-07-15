@@ -1,7 +1,8 @@
-/*Changes in Net Worth
+/*
+1. Changes in Net Worth
 
-Writing a query to return the change in net worth for each use
-r, ordered by decreasing net change.*/
+Writing a query to return the change in net worth for each user, 
+ordered by decreasing net change. */
 
 select * from transactions_p2; 
 
