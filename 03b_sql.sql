@@ -16,7 +16,7 @@ select * from counts_p3;
 
 create table ranks_p3 as
 select dates, item, rank() over
-       (partition by dates order by counts desc) rank
+       (partition by dates order by counts desc) as rank
         from counts_p3;
 
 select * from ranks_p3;
