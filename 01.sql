@@ -1,7 +1,8 @@
-/* 1. Cancellation Rates.
+/* 
+1. Cancellation Rates.
 
 Writing a query to return the publication and cancellation 
-rate for each user*/
+rate for each user. */
 
 select * from users_p1; 
 
