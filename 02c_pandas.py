@@ -18,3 +18,19 @@ try:
   transactions
 except SQLAlchemyError as e:
   print(e)
+
+debited  = transactions[['sender','amount']].groupby('sender').sum()
+credited = transactions[['receicer','amount']].groupby('receiver').sum()
+
+debited.reset_index(inplace  = True)
+credited.reset_index(inplace = True)
+
+debited.rename(columns  = {'sender'  :'user_id', 'amount':'debited'},  inplace = True)
+credited.rename(columns = {'receiver':'user_id', 'amount':'credited'}, inplace = True)
+
+changes = pd.merge(debited, credited, on 'user_id', how = 'outer')
+changes['debited']  = changes['debited'].replace(np.nan, 0)
+changes['credited'] = changes['credited'].replace(np.nan,0)
+
+changes['net_change'] = changes['credited'] - changes['debited'] 
+changes[['user_id','net_change']].sort_values(by = 'net_change', ascending = False)
