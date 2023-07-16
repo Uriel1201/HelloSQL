@@ -1,7 +1,7 @@
 /*
-3. Most Frequent Item
+03. Most Frequent Item
 
-writing a query to return the most frequent item
+Writing a query to return the most frequent item
 ordered on each date. */
 
 create table items_p3 (dates date, item varchar (9));
