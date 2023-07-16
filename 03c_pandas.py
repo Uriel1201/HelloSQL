@@ -26,8 +26,7 @@ except SQLAlchemyError as e:
   print(e)
 
 item_counts = items.groupby(['dates','item']).agg({'item':np.size})
-item_counts.rename(columns = {'item':'count'}, inplace = True)
+item_counts.rename(columns = {'item':'counts'}, inplace = True)
 item_counts.reset_index(inplace = True)
-item_counts['ranks'] = item_counts.group.by('dates')['count'].rank(method = 'min', ascending = False)
-
+item_counts['ranks'] = item_counts.groupby('dates')['counts'].rank(method = 'min', ascending = False)
 item_counts[item_counts.ranks == 1.0][['dates','item']]
