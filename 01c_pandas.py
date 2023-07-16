@@ -10,7 +10,7 @@ import sqlalchemy
 from sqlalchemy.exc import SQLAlchemyError
 
 '''
-1. Cancellation Rates.
+01. Cancellation Rates.
 
 Writing a query to return the publication and cancellation 
 rate for each user
