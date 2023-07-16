@@ -10,9 +10,9 @@ import sqlalchemy
 from sqlalchemy.exc import SQLAlchemyError
 
 '''
-3. Most Frequent Item
+03. Most Frequent Item
 
-writing a query to return the most frequent item
+Writing a query to return the most frequent item
 ordered on each date.
 '''
 
