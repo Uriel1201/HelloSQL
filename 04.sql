@@ -1,4 +1,5 @@
-/* Time Difference Between Latest Actions
+/* 
+04. Time Difference Between Latest Actions
 
 writing a query to return for each user the
 time elapsed between the last action
