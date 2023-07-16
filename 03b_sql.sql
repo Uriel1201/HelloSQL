@@ -1,7 +1,7 @@
 /*
-3. Most Frequent Item
+03. Most Frequent Item
 
-writing a query to return the most frequent item
+Writing a query to return the most frequent item
 ordered on each date. */
 
 select *  from items_p3;
