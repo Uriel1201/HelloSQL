@@ -1,4 +1,5 @@
-/* Super Users
+/* 
+05. Super Users.
 
 A company defines its super users as
 those who have made at least two
@@ -9,9 +10,9 @@ Users who are not super users should
 also be present in the table. */
 
 
-create table usersp5 (user_id integer, product_id integer, transaction_date date);
+create table users_p5 (user_id integer, product_id integer, transaction_date date);
 
-insert into usersp5 with names as (
+insert into users_p5 with names as (
     select 1, 101, '12-feb-20' from dual union all 
     select 2, 105, '13-feb-20' from dual union all 
     select 1, 111, '14-feb-20' from dual union all 
@@ -22,18 +23,18 @@ insert into usersp5 with names as (
     select 3, 105, '15-feb-20' from dual)
     select * from names;
 
-select * from usersp5;
+select * from users_p5;
 
 create table ranks_p5 as
 select user_id, transaction_date,
        row_number() over (partition by user_id order by transaction_date) user_ranks
-       from usersp5;
+       from users_p5;
 
 select * from ranks_p5;
 
 create table allusers_p5 as
 select distinct(user_id)
-       from usersp5;
+       from users_p5;
 
 select * from allusers_p5;
 
