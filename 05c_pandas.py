@@ -30,6 +30,7 @@ try:
 except SQLAlchemyError as e:
   print(e)
 
+users.info()
 users['transaction_date'] = pd.to_datetime(users['transaction_date'])
 users['ranks'] = users.groupby('user_id')['transaction_date'].rank(method = 'first')
 
