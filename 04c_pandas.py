@@ -35,5 +35,5 @@ second_last_action = users[users.ranks == 2][['user_id','action_date']]
 second_last_action.rename(columns = {'action_date':'second_last_action_date'}, inplace = True)
 elapsed_days = pd.merge(last_action, second_last_action, on = 'user_id', how = 'left').sort_values(by = 'user_id')
 elapsed_days.resest_index(inplace = True)
-elapsed_days["elapsed_days'] = elapsed_days['last_action_date'] - elapsed_days['second_last_action_date']
+elapsed_days['elapsed_days'] = elapsed_days['last_action_date'] - elapsed_days['second_last_action_date']
 elapsed_days[['user_id','elapsed_days']]
