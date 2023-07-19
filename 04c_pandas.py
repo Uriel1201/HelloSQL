@@ -29,10 +29,13 @@ except SQLAlchemyError as e:
 
 users['action_date'] = pd.to_datetime(users['action_date'])
 users['ranks'] = users.groupby('user_id')['action_date'].rank(method = 'first', ascending = False) 
+
 last_action = users[users.ranks == 1][['user_id','action_date']]
 last_action.rename(columns = {'action_date':'last_action_date'}, inplace = True)
+
 second_last_action = users[users.ranks == 2][['user_id','action_date']]
 second_last_action.rename(columns = {'action_date':'second_last_action_date'}, inplace = True)
+
 elapsed_days = pd.merge(last_action, second_last_action, on = 'user_id', how = 'left').sort_values(by = 'user_id')
 elapsed_days.resest_index(inplace = True)
 elapsed_days['elapsed_days'] = elapsed_days['last_action_date'] - elapsed_days['second_last_action_date']
