@@ -23,7 +23,7 @@ also be present in the table.
 
 try:
   engine = sqlalchemy.create_engine("oracle+cx_oracle://usr:pswd@localhost/?service_name=orclpdb1", arraysize=1000)
-  data = """select * users_p5""";
+  data = """select * from users_p5""";
   users = pd.read_sql(data, engine)
   users
   
