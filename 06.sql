@@ -1,13 +1,12 @@
-/*  Content Recommendations
+/*  
+06. Content Recommendations
 
-writing a
-query to return page recommendations
+Writing a query to return page recommendations
 to a social media user based on the
 pages that their friends have liked, but
 that they have not yet marked as liked. */
 
 create table friends_p6 (user_id integer, friend integer);
-
 create table likes_p6 (user_id integer, page_likes char);
 
 insert into friends_p6 with names as (
@@ -19,8 +18,7 @@ insert into friends_p6 with names as (
     select 3, 4 from dual union all 
     select 4, 1 from dual union all 
     select 4, 3 from dual
-)
-select * from names;
+) select * from names;
 
 insert into likes_p6 with names as(
     select 1, 'A' from dual union all 
@@ -30,8 +28,7 @@ insert into likes_p6 with names as(
     select 3, 'B' from dual union all 
     select 3, 'C' from dual union all 
     select 4, 'B' from dual
-)
-select * from names;
+) select * from names;
 
 select * from friends_p6;
 select * from likes_p6;
