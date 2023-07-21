@@ -30,10 +30,10 @@ except SQLAlchemyError as e:
   print(e)
 
 index = 'user_id'
-mobile_users = pd.DataFrame(mobile[index].copy())
+mobile_users              = pd.DataFrame(mobile[index].copy())
 mobile_users['mobile_id'] = mobile[index]
-web_users = pd.DataFrame(web[index].copy())
-web_users['web_id'] = web[index]
+web_users                 = pd.DataFrame(web[index].copy())
+web_users['web_id']       = web[index]
 
 tallies                = pd.merge(mobile_users, web_users, on = 'user_id', how = 'outer')
 tallies                = tallies.drop_duplicates()
