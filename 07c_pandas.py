@@ -20,8 +20,8 @@ both.
 
 try:
   engine = sqlalchemy.create_engine("oracle+cx_oracle://usr:pswd@localhost/?service_name=orclpdb1", arraysize=1000)
-  data1 = """select * from mobile_p7""";
-  data2 = """select * from web_p7""";
+  data1  = """select * from mobile_p7""";
+  data2  = """select * from web_p7""";
 
   mobile = pd.read_sql(data1, engine)
   web    = pd.read_sql(data2, engine)
@@ -29,7 +29,7 @@ try:
 except SQLAlchemyError as e:
   print(e)
 
-index = 'user_id'
+index                     = 'user_id'
 mobile_users              = pd.DataFrame(mobile[index].copy())
 mobile_users['mobile_id'] = mobile[index]
 web_users                 = pd.DataFrame(web[index].copy())
