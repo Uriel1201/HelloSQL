@@ -1,4 +1,5 @@
-/* Upgrade Rate by Product Action
+/* 
+08. Upgrade Rate by Product Action
 
 Returning the fraction of users, rounded to two
 decimal places, who first accessed feature
@@ -19,10 +20,9 @@ insert into users_p8 with names as (
      select 5, 'Jean',   '16-Feb-20' from dual union all
      select 6, 'Justin', '17-Feb-20' from dual union all
      select 7, 'Jeremy', '18-Feb-20' from dual
-)
-select * from names;
+) select * from names;
 
-insert into events_p8 with names as  (
+insert into events_p8 with names as (
      select 1, 'F1', '1-Mar-20'  from dual union all
      select 2, 'F2', '2-Mar-20'  from dual union all
      select 2, 'P',  '12-Mar-20' from dual union all
@@ -30,8 +30,7 @@ insert into events_p8 with names as  (
      select 4, 'F2', '15-Mar-20' from dual union all
      select 1, 'P',  '16-Mar-20' from dual union all
      select 3, 'P',  '22-Mar-20' from dual
-)
-select * from names;
+) select * from names;
 
 select * from users_p8;
 select * from events_p8;
