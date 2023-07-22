@@ -33,8 +33,8 @@ except SQLAlchemyError as e:
 users.info()
 events.info()
 
-users['join_date']    = pd.to_datetime(users['join_date'])
-events['access_date'] = pd.to_datetime(events['access_date'])
+# users['join_date']    = pd.to_datetime(users['join_date'])
+# events['access_date'] = pd.to_datetime(events['access_date'])
 
 events['rank']        = events.groupby('user_id')['access_date'].rank(method = 'first')
 f1                    = np.where((events['rank'] == 1.0) & (events['Type'] == 'F2'))
