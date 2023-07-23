@@ -1,3 +1,10 @@
+/* 
+11. Birthday Attendance.
+
+Writing a query to return the fraction of students,
+rounded to two decimal places, who
+attended school on their birthday. */
+    
 create table attendance_p11 (student_id integer, school_date date, attendance char);
 create table students_p11 (student_id integer, school_id integer, grade integer, date_birth date);
 
