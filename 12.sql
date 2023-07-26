@@ -1,4 +1,5 @@
-/* 12. Hacker Scores.
+/* 
+12. Hacker Scores.
 
 Writing  a
 query to return the hacker ID, name, and
@@ -15,8 +16,7 @@ insert into hackers_p12 with names as (
     select 2, 'Jane' from dual union all
     select 3, 'Joe'  from dual union all
     select 4, 'Jim'  from dual
-)
-select * from names;
+) select * from names;
 
 create table submissions_p12 (sub_id integer, hacker_id integer, challenge_id integer, score integer);
 
