@@ -5,7 +5,7 @@ Writing a query to rank scores in the
 following table without using a window
 function. */ 
 
-select * from  scores_p13;
+select * from scores_p13;
 
 select s1.id, s1.score, count (distinct s2.score) as rank
     from scores_p13 s1 
