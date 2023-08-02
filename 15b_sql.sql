@@ -10,16 +10,16 @@ select * from matches_p15;
 create table hostp_p15 as
 select host_team as team_id, 
     sum (case when host_goals > guest_goals then 3
-         when host_goals = guest_goals then 1
-         else 0 end) as points
+              when host_goals = guest_goals then 1
+                                            else 0 end) as points
     from matches_p15
     group by host_team;
 
 create table guestp_p15 as
 select guest_team as team_id, 
     sum (case when host_goals < guest_goals then 3
-         when host_goals = guest_goals then 1
-         else 0 end) as points
+              when host_goals = guest_goals then 1
+                                            else 0 end) as points
     from matches_p15
     group by guest_team;
 
