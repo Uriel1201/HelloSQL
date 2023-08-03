@@ -1,4 +1,5 @@
-/* 18. Maximally-separated Cities.
+/* 
+18. Maximally-separated Cities.
 
 Writing a query to return  the furthest-separated
 pair of cities for each state and the corresponding 
