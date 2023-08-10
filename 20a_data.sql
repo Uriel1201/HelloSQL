@@ -1,5 +1,14 @@
+/*
+20. Three in a row
 
+Writing a query to return a
+table showing the date and visitor count
+of high-attendance periods, defined as
+three consecutive entries (not
+necessarily consecutive dates) with
+more than 100 visitors.
 */
+
 create table attendance_p20 (event_date date, visitors integer);
 
 insert into attendance_p20 with names as ( 
