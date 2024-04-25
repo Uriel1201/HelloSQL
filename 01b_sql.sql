@@ -7,7 +7,7 @@ rate for each user. */
 select * from users_p1; 
 
 create table totals_p1 as
-select user_id, sum(case when action='start' then 1 else 0 end) as starts,
+select user_id, sum(case when action ='start' then 1 else 0 end) as starts,
 sum(case when action='cancel' then 1 else 0 end) as cancels,
 sum(case when action='publish' then 1 else 0 end) as publishes
 from users_p1
