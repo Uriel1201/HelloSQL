@@ -1,6 +1,7 @@
 """
 # 01. Cancelation Rates
-From the following table of user IDs, actions, and dates, write a query to return the publication and cancellation rate for each user.
+From the following table of user IDs, actions, and dates, write a query to return 
+the publication and cancellation rate for each user.
 """
 
 # pip install pandas
