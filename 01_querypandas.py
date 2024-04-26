@@ -21,19 +21,17 @@ try:
   table = """select * from users_p1""";
   users = pd.read_sql(table, engine)
   users
+  
+  users['starts']    = np.where(users['action'] == 'start', 1, 0)
+  users['cancels']   = np.where(users['action'] == 'cancel', 1, 0)
+  users['publishes'] = np.where(users['action'] == 'publish', 1, 0)
+
+  actions = users[['user_id','starts','cancels','publishes']].groupby('user_id').sum()
+  actions.reset_index(inplace = True)
+
+  actions['cancel_rate']  = actions['cancels']   / actions['starts']
+  actions['publish_rate'] = actions['publishes'] / actions['starts']
+  actions[['user_id','cancel_rate','publish_rate']]
 
 except SQLAlchemyError as e:
   print(e)
-
-users['starts']    = np.where(users['action']=='start',  1,0)
-users['cancels']   = np.where(users['action']=='cancel', 1,0)
-users['publishes'] = np.where(users['action']=='publish',1,0)
-# users
-
-actions = users[['user_id','starts','cancels','publishes']].groupby('user_id').sum()
-actions.reset_index(inplace = True)
-# actions
-
-actions['cancel_rate']  = actions['cancels']   / actions['starts']
-actions['publish_rate'] = actions['publishes'] / actions['starts']
-actions[['user_id','cancel_rate','publish_rate']]
