@@ -22,8 +22,8 @@ select * from debited_p2;
 select * from credited_p2;
 
 select coalesce(d.sender,c.receiver) as user_id,
-coalesce(c.credited,0)-coalesce(d.debited,0) as net_change
+coalesce(c.credited,0) - coalesce(d.debited,0) as net_change
    from credited_p2 c
    full outer join debited_p2 d
-    on c.receiver=d.sender
+    on c.receiver = d.sender
    order by 2 desc; 
