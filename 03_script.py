@@ -17,12 +17,15 @@ from sqlalchemy.exc import SQLAlchemyError
 try:
   engine = sqlalchemy.create_engine("oracle+cx_oracle://usr:pswd@localhost/?service_name=orclpdb1", arraysize=1000)
 
-  table = """select * from users_p1""";
-  users = pd.read_sql(table, engine)
-  users
+  table = """select * from items_p3""";
+  items = pd.read_sql(table, engine)
+  items
 
-items['dates'] = pd.to_datetime(items['dates'])
+  items['dates'] = pd.to_datetime(items['dates'])
 
-item_counts = items.groupby(['dates', 'item']).size().reset_index(name = 'counts')
-item_counts['item_rank'] = item_counts.groupby('dates')['counts'].rank(method = 'dense', ascending = False)
-item_counts[['dates', 'item']][item_counts['item_rank'] == 1.0]
+  item_counts = items.groupby(['dates', 'item']).size().reset_index(name = 'counts')
+  item_counts['item_rank'] = item_counts.groupby('dates')['counts'].rank(method = 'dense', ascending = False)
+  item_counts[['dates', 'item']][item_counts['item_rank'] == 1.0]
+
+except SQLAlchemyError as e:
+  print(e)
