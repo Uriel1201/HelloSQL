@@ -3,30 +3,23 @@
 From the following table containing a list of dates and items ordered, write a query to return the most frequent item ordered on each date. Return multiple items in the case of a tie.
 """
 
+# pip install pandas
+# pip install numpy
+# pip install SQLAlchemy
+# pip install cx_Oracle
+
 import pandas as pd
-import numpy as  np
+import numpy  as np
+import cx_Oracle
+import sqlalchemy
+from sqlalchemy.exc import SQLAlchemyError
 
-data = {'dates' : ['01-JAN-20',
-                   '01-JAN-20',
-                   '01-JAN-20',
-                   '01-JAN-20',
-                   '02-JAN-20',
-                   '02-JAN-20',
-                   '02-JAN-20',
-                   '02-JAN-20'],
-        'item' : ['apple',
-                  'apple',
-                  'pear',
-                  'pear',
-                  'pear',
-                  'pear',
-                  'pear',
-                  'orange']
+try:
+  engine = sqlalchemy.create_engine("oracle+cx_oracle://usr:pswd@localhost/?service_name=orclpdb1", arraysize=1000)
 
-       }
-items = pd.DataFrame(data)
-items
-
+  table = """select * from users_p1""";
+  users = pd.read_sql(table, engine)
+  users
 
 items['dates'] = pd.to_datetime(items['dates'])
 
