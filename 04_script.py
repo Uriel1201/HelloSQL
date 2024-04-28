@@ -30,7 +30,7 @@ try:
   # Defining a function to count in descending order
   def row_num(x):
       x_s = pd.Series(x)
-      row_n = range(len(x), 0, -1)
+      row_n = range(len(x_s), 0, -1)
       return row_n
 
   users['date_rank'] = users.groupby('user_id')['action_date'].transform(row_num)
