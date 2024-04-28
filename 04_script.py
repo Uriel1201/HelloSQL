@@ -46,3 +46,6 @@ try:
   elapsed_days['elapsed_time'] = elapsed_days['last'] - elapsed_days['penultimate']
 
   elapsed_days[['user_id', 'elapsed_time']].sort_values(by = 'user_id')
+
+except SQLAlchemyError as e:
+  print(e)
