@@ -1,7 +1,28 @@
 """
 # 04. Time difference between latest actions.
-From the following table of user actions, write a query to return for each user the time elapsed between the last action and the second-to-last action, in ascending order by user ID.
+
+From the following table of user actions, 
+write a query to return for each user the time elapsed 
+between the last action and the second-to-last action, 
+in ascending order by user ID.
 """
+
+# pip install pandas
+# pip install numpy
+# pip install SQLAlchemy
+# pip install cx_Oracle
+
+import pandas as pd
+import numpy  as np
+import cx_Oracle
+import sqlalchemy
+from sqlalchemy.exc import SQLAlchemyError
+
+try:
+  engine = sqlalchemy.create_engine("oracle+cx_oracle://usr:pswd@localhost/?service_name=orclpdb1", arraysize=1000)
+
+  table = """select * from items_p3""";
+  items = pd.read_sql(table, engine)
 
 import pandas as pd
 import numpy as  np
