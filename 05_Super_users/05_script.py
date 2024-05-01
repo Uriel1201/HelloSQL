@@ -5,25 +5,12 @@ two transactions. From the following table, write a query to return,
 for each user, the date when they become a superuser,ordered by oldest super users first.
 Users who are not super users should also be present in the table.
 """
+try:
+  engine = sqlalchemy.create_engine("oracle+cx_oracle://usr:pswd@localhost/?service_name=orclpdb1", arraysize=1000)
 
-import pandas as pd
-import numpy as  np
-
-data = {'user_id'          : [1,2,1,3,1,2,4,3],
-        'product_id'       : [101,105,111,121,101,105,101,105],
-        'transaction_date' : ['12-FEB-20',
-                              '13-FEB-20',
-                              '14-FEB-20',
-                              '15-FEB-20',
-                              '16-FEB-20',
-                              '17-FEB-20',
-                              '16-FEB-20',
-                              '15-FEB-20']
-        }
-
-users = pd.DataFrame(data)
-users
-
+  table = """select * from users_p1""";
+  users = pd.read_sql(table, engine)
+  users
 
 users['transaction_date'] = pd.to_datetime(users['transaction_date'])
 
