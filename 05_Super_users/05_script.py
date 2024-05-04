@@ -40,3 +40,6 @@ try:
 
   superusers_date = pd.merge(id_df, superusers, on = 'user_id', how = 'left')
   superusers_date.sort_values(by = 'transaction_date')
+
+except SQLAlchemyError as e:
+  print(e)
