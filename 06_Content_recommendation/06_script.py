@@ -44,3 +44,6 @@ try:
   recomendations.drop_duplicates(inplace = True)
 
   recomendations.sort_values(by = 'user_id')
+
+except SQLAlchemyError as e:
+  print(e)
