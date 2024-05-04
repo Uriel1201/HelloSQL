@@ -1,4 +1,3 @@
-
 """
 #06. Content recommendation (hard)
 Using the following two tables, write a query to return 
@@ -8,7 +7,22 @@ they have not yet marked as liked.
 Order the result by ascending user ID.
 """
 
+# pip install pandas
+# pip install numpy
+# pip install SQLAlchemy
+# pip install cx_Oracle
 
+import pandas as pd
+import numpy  as np
+import cx_Oracle
+import sqlalchemy
+from sqlalchemy.exc import SQLAlchemyError
+
+try:
+  engine = sqlalchemy.create_engine("oracle+cx_oracle://usr:pswd@localhost/?service_name=orclpdb1", arraysize=1000)
+
+  table1 = """select * from friends_p6""";
+  friends = pd.read_sql(table1, engine)
 
 friends
 likes
