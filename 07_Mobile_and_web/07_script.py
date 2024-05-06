@@ -17,10 +17,12 @@ from sqlalchemy.exc import SQLAlchemyError
 try:
   engine = sqlalchemy.create_engine("oracle+cx_oracle://usr:pswd@localhost/?service_name=orclpdb1", arraysize=1000)
 
-  table = """select * from users_p1""";
-  mobile = pd.read_sql(table, engine)
+  table1 = """select * from mobile_p7;"""
+  mobile = pd.read_sql(table1, engine)
   mobile
 
+  table2 = """select * from web_p7;"""
+  web = pd.read_sql(table2, engine)
   web
 
   mobile_users = pd.DataFrame(mobile['user_id'].drop_duplicates())
@@ -38,3 +40,6 @@ try:
   matches = matches[['only_mobile', 'only_web', 'both']]
 
   pd.DataFrame(matches.mean())
+  
+except SQLAlchemyError as e:
+  print(e)
