@@ -1,4 +1,3 @@
-
 """
 #10 Project Aggregation
 The projects table contains three columns: 
@@ -38,3 +37,6 @@ try:
   project_durations = pd.concat([openings, endings], axis = 1, join = 'inner')
   project_durations['project_duration'] = project_durations['end_date'] - project_durations['start_date']
   project_durations.sort_values(by = 'project_duration', ascending = False)
+
+except SQLAlchemyError as e:
+  print(e)
