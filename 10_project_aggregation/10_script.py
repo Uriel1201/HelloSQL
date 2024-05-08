@@ -1,22 +1,40 @@
 
 """
 #10 Project Aggregation
-The projects table contains three columns: task_id, start_date, and end_date. The difference between end_date and start_date is 1 day for each row in the table. If task end dates are consecutive they are part of the same project. Projects do not overlap. Write a query to return the start and end dates of each project, and the number of days it took to complete. Order by ascending project duration, and ascending start date in the case of a tie.
+The projects table contains three columns: 
+task_id, start_date, and end_date. 
+The difference between end_date and start_date is 1 day for each row in the table. 
+If task end dates are consecutive they are part of the same project. 
+Projects do not overlap. Write a query to return the start and end dates 
+of each project, and the number of days it took to complete. 
+Order by ascending project duration, and ascending start date in the case of a tie.
 """
 
-projects
+# pip install SQLAlchemy
+# pip install cx_Oracle
 
+import pandas as pd
+import numpy  as np
+import cx_Oracle
+import sqlalchemy
+from sqlalchemy.exc import SQLAlchemyError
 
-projects['start_date'] = pd.to_datetime(projects['start_date'])
-projects['end_date'] = pd.to_datetime(projects['end_date'])
+try:
+  engine = sqlalchemy.create_engine("oracle+cx_oracle://usr:pswd@localhost/?service_name=orclpdb1", arraysize=1000)
 
+  table = """select * from projects_p10;"""
+  projects = pd.read_sql(table, engine)
+  projects
 
-openings = pd.DataFrame(projects[~projects.start_date.isin(projects['end_date'])]['start_date'])
-openings.reset_index(inplace = True, drop = True)
+  projects['start_date'] = pd.to_datetime(projects['start_date'])
+  projects['end_date'] = pd.to_datetime(projects['end_date'])
 
-endings = pd.DataFrame(projects[~projects.end_date.isin(projects['start_date'])]['end_date'])
-endings.reset_index(inplace = True, drop = True)
+  openings = pd.DataFrame(projects[~projects.start_date.isin(projects['end_date'])]['start_date'])
+  openings.reset_index(inplace = True, drop = True)
 
-project_durations = pd.concat([openings, endings], axis = 1, join = 'inner')
-project_durations['project_duration'] = project_durations['end_date'] - project_durations['start_date']
-project_durations.sort_values(by = 'project_duration', ascending = False)
+  endings = pd.DataFrame(projects[~projects.end_date.isin(projects['start_date'])]['end_date'])
+  endings.reset_index(inplace = True, drop = True)
+
+  project_durations = pd.concat([openings, endings], axis = 1, join = 'inner')
+  project_durations['project_duration'] = project_durations['end_date'] - project_durations['start_date']
+  project_durations.sort_values(by = 'project_duration', ascending = False)
