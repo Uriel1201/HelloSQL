@@ -30,3 +30,6 @@ try:
   friend_counts.rename(columns = {0 : 'user_id'}, inplace = True)
 
   friend_counts
+  
+except SQLAlchemyError as e:
+  print(e)
