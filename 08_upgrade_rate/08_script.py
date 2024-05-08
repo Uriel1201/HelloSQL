@@ -56,3 +56,6 @@ try:
       }
   upgrade = pd.DataFrame(data = d, index = [0])
   upgrade
+  
+except SQLAlchemyError as e:
+  print(e)
