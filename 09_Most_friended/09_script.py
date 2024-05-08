@@ -20,7 +20,7 @@ try:
   engine = sqlalchemy.create_engine("oracle+cx_oracle://usr:pswd@localhost/?service_name=orclpdb1", arraysize=1000)
 
   table = """select * from friends_p9;"""
-  friends= pd.read_sql(table, engine)
+  friends = pd.read_sql(table, engine)
   friends
 
   friend_counts = pd.DataFrame(pd.concat([friends['user_1'], friends['user_2']]))
