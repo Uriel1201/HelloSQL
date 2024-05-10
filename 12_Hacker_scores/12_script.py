@@ -1,39 +1,12 @@
-# %%
-# !! {"metadata":{
-# !!   "id":"cc-imports"
-# !! }}
-
-#<cc-imports>
-
+# !pip install wget
 import subprocess
 
-# %%
-# !! {"metadata":{
-# !!   "id": "VttmkDFl3GpN"
-# !! }}
+
 """
 # 12. Hacker scores
 Given the following two tables, write a query to return the hacker ID, name, and total score (the sum of maximum scores for each challenge completed) ordered by descending score, and by ascending hacker ID in the case of score tie. Do not display entries for hackers with a score of zero.
 """
 
-# %%
-# !! {"metadata":{
-# !!   "id": "_hmhDyxcTQy_",
-# !!   "executionInfo": {
-# !!     "status": "ok",
-# !!     "timestamp": 1715363554781,
-# !!     "user_tz": 360,
-# !!     "elapsed": 21,
-# !!     "user": {
-# !!       "displayName": "Uriel Garc\u00eda",
-# !!       "userId": "03386744220426758265"
-# !!     }
-# !!   },
-# !!   "outputId": "43ee5fe9-9ef7-4541-851c-f03ca8ed1d03",
-# !!   "colab": {
-# !!     "base_uri": "https://localhost:8080/"
-# !!   }
-# !! }}
 sub_p_res = subprocess.run(['wget', 'https://raw.githubusercontent.com/Uriel1201/HelloSQL/main/function_df.p'], stdout=subprocess.PIPE).stdout.decode('utf-8') #<cc-cm>
 print(sub_p_res) #<cc-cm>
 
