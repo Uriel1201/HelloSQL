@@ -26,13 +26,13 @@ from sqlalchemy.exc import SQLAlchemyError
 try:
   engine = sqlalchemy.create_engine("oracle+cx_oracle://usr:pswd@localhost/?service_name=orclpdb1", arraysize=1000)
 
-  table1 = """select * from mobile_p7;"""
-  mobile = pd.read_sql(table1, engine)
-  mobile
+  table1 = """select * from hackers_p12;"""
+  hackers = pd.read_sql(table1, engine)
+  hackers 
 
-  table2 = """select * from web_p7;"""
-  web = pd.read_sql(table2, engine)
-  web
+  table2 = """select * from submissions_p12;"""
+  submissions = pd.read_sql(table2, engine)
+  submissions
 
   submissions = submissions.sort_values(by = ['hacker_id', 'challenge_id', 'score'])
   submissions['score_rank'] = submissions.groupby(['hacker_id', 'challenge_id'])['score'].transform(f_df.desc_row_num)
@@ -41,7 +41,7 @@ try:
   max_scores = submissions.loc[c, ['hacker_id', 'score']]
   max_scores.set_index('hacker_id', inplace = True, drop = True)
 
-  total_score = max_scores.groupby(level=0).sum()
+  total_score = max_scores.groupby(level = 0).sum()
   total_score = total_score[total_score['score'] > 0]
 
   hackers.set_index('hacker_id', inplace = True, drop = True)
