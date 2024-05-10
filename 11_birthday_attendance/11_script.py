@@ -44,3 +44,6 @@ try:
   birthday_attendance_rate = pd.DataFrame(d)
 
   birthday_attendance_rate.round(2)
+
+except SQLAlchemyError as e:
+  print(e)
