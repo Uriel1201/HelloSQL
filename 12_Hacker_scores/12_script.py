@@ -48,3 +48,6 @@ try:
 
   hacker_scores = pd.concat([hackers, total_score], axis = 1, join = 'inner')
   hacker_scores = hacker_scores.sort_values(by = 'score', ascending = False)
+
+except SQLAlchemyError as e:
+  print(e)
