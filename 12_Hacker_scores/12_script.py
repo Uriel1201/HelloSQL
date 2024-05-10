@@ -42,4 +42,4 @@ total_score = total_score[total_score['score'] > 0]
 hackers.set_index('hacker_id', inplace = True, drop = True)
 
 hacker_scores = pd.concat([hackers, total_score], axis = 1, join = 'inner')
-hacker_scores.sort_values(by = 'score', ascending = False)
+hacker_scores = hacker_scores.sort_values(by = 'score', ascending = False)
