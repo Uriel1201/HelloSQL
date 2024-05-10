@@ -9,8 +9,8 @@ and by ascending hacker ID in the case of score tie.
 Do not display entries for hackers with a score of zero.
 """
 
-# sub_p_res = subprocess.run(['wget', 'https://raw.githubusercontent.com/Uriel1201/HelloSQL/main/function_df.py'], stdout=subprocess.PIPE).stdout.decode('utf-8') #<cc-cm>
-# print(sub_p_res) #<cc-cm>
+sub_p_res = subprocess.run(['wget', 'https://raw.githubusercontent.com/Uriel1201/HelloSQL/main/function_df.py'], stdout=subprocess.PIPE).stdout.decode('utf-8') #<cc-cm>
+print(sub_p_res) #<cc-cm>
 
 """
 import pandas as pd
