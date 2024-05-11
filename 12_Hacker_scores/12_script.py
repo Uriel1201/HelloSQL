@@ -9,7 +9,7 @@ and by ascending hacker ID in the case of score tie.
 Do not display entries for hackers with a score of zero.
 """
 
-sub_p_res = subprocess.run(['wget', 'https://raw.githubusercontent.com/Uriel1201/HelloSQL/main/function_df.py'], stdout=subprocess.PIPE).stdout.decode('utf-8') #<cc-cm>
+sub_p_res = subprocess.run(['wget', 'https://raw.githubusercontent.com/Uriel1201/HelloSQL/main/functions_df.py'], stdout=subprocess.PIPE).stdout.decode('utf-8') #<cc-cm>
 print(sub_p_res) #<cc-cm>
 
 # pip install pandas
@@ -19,6 +19,7 @@ print(sub_p_res) #<cc-cm>
 
 import pandas as pd
 import numpy  as np
+import functions_df as fd
 import cx_Oracle
 import sqlalchemy
 from sqlalchemy.exc import SQLAlchemyError
@@ -35,7 +36,7 @@ try:
   submissions
 
   submissions = submissions.sort_values(by = ['hacker_id', 'challenge_id', 'score'])
-  submissions['score_rank'] = submissions.groupby(['hacker_id', 'challenge_id'])['score'].transform(f_df.desc_row_num)
+  submissions['score_rank'] = submissions.groupby(['hacker_id', 'challenge_id'])['score'].transform(fd.desc_row_num)
 
   c = submissions['score_rank'] == 1
   max_scores = submissions.loc[c, ['hacker_id', 'score']]
