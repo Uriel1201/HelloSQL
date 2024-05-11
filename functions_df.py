@@ -42,7 +42,7 @@ def main():
     random_array = np.random.randint(1, 16, 30)
     r = rank_serie(random_array)
     r_R = pd.DataFrame(r, columns = ['score', 'rank'])
-    r_R.sort_values(by = 'score')
+    r_R = r_R.sort_values(by = 'score')
     print(r_R)
 #----------------------------------------------
 if __name__ == '__main__':
