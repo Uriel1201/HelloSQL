@@ -43,6 +43,7 @@ def main():
     r = rank_serie(random_array)
     r_R = pd.DataFrame(r, columns = ['score', 'rank'])
     r_R.sort_values(by = 'score')
+    print(r_R)
 #----------------------------------------------
 if __name__ == '__main__':
     main()
