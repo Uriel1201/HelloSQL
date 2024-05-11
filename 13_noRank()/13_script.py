@@ -6,17 +6,34 @@ print(sub_p_res) #<cc-cm>
 
 """
 # 13. Rank without RANK (hard)
-Write a query to rank scores in the following table without using a window function. If there is a tie between two scores, both should have the same rank. After a tie, the following rank should be the next consecutive integer value.
+Write a query to rank scores in the following table without using a window function. 
+If there is a tie between two scores, both should have the same rank. 
+After a tie, the following rank should be the next consecutive integer value.
 """
 
-score_array = np.array(scores['score'])
+# pip install pandas
+# pip install numpy
+# pip install SQLAlchemy
+# pip install cx_Oracle
 
+import pandas as pd
+import numpy  as np
+import cx_Oracle
+import sqlalchemy
+from sqlalchemy.exc import SQLAlchemyError
 
-"""
-Using my own rank_serie method to asign ranks on an array.
-"""
+try:
+  engine = sqlalchemy.create_engine("oracle+cx_oracle://usr:pswd@localhost/?service_name=orclpdb1", arraysize=1000)
 
+  table = """select * from scores_p13;"""
+  scores = pd.read_sql(table, engine)
+  scores
 
-rank_df = pd.DataFrame(fd.rank_serie(score_array), columns = ['score', 'rank'])
+  score_array = np.array(scores['score'])
 
-rank_df.sort_values(by = 'rank')
+  """
+  Using my own rank_serie method to asign ranks on an array.
+  """
+
+  rank_df = pd.DataFrame(fd.rank_serie(score_array), columns = ['score', 'rank'])
+  rank_df.sort_values(by = 'rank')
