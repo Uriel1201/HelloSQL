@@ -14,6 +14,14 @@ def desc_row_num(x):
     return row_n
 
 #----------------------------------------------
+def rank_serie(seri):
+    serie = np.array(seri)
+    copy = np.unique(serie)
+    count_list = [np.sum(copy >= s) for s in serie]
+    array_list = np.array(list(zip(serie, count_list)))
+    return array_list
+
+#----------------------------------------------
 def main():
     data1 = {'hacker_id' : [1,2,3,4],
              'name'      : ['John','Jane','Joe','Jim']
@@ -31,7 +39,10 @@ def main():
     submissions['score_number'] = submissions.groupby(['hacker_id', 'challenge_id'])['score'].transform(row_num)
     submissions['score_rank'] = submissions.groupby(['hacker_id', 'challenge_id'])['score'].transform(desc_row_num)
     print(submissions)
-
+    random_array = np.random.randint(1, 16, 30)
+    r = rank_serie(random_array)
+    r_R = pd.DataFrame(r, columns = ['score', 'rank'])
+    r_R.sort_values(by = 'score')
 #----------------------------------------------
 if __name__ == '__main__':
     main()
