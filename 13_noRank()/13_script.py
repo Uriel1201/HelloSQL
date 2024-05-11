@@ -1,7 +1,7 @@
 #<cc-imports>
 import subprocess
 
-sub_p_res = subprocess.run(['wget', 'https://raw.githubusercontent.com/Uriel1201/HelloSQL/main/functions_df.p'], stdout=subprocess.PIPE).stdout.decode('utf-8') #<cc-cm>
+sub_p_res = subprocess.run(['wget', 'https://raw.githubusercontent.com/Uriel1201/HelloSQL/main/functions_df.py'], stdout=subprocess.PIPE).stdout.decode('utf-8') #<cc-cm>
 print(sub_p_res) #<cc-cm>
 
 """
@@ -18,6 +18,7 @@ After a tie, the following rank should be the next consecutive integer value.
 
 import pandas as pd
 import numpy  as np
+import functions_df as fd
 import cx_Oracle
 import sqlalchemy
 from sqlalchemy.exc import SQLAlchemyError
