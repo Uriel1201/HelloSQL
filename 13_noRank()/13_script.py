@@ -37,3 +37,6 @@ try:
 
   rank_df = pd.DataFrame(fd.rank_serie(score_array), columns = ['score', 'rank'])
   rank_df.sort_values(by = 'rank')
+
+except SQLAlchemyError as e:
+  print(e)
