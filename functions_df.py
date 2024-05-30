@@ -22,6 +22,24 @@ def rank_serie(seri):
     return array_list
 
 #----------------------------------------------
+def basic_cummulative(table, index_col, col):
+    table.set_index('index_col', inplace = True)
+    column_values = []
+    n = table.index.unique()
+    for idx in n:
+        values_serie = table.loc[idx, 'col']
+        if isinstance(values_serie, pd.Series):
+            values_list = values_serie.tolist()
+        else:
+            values_list = [values_serie]
+        column_values.append(values_list)
+    max_length= max(len(v_l) for v_l in column_values)
+    numpy_array = np.zeros((len(n), max_length)) 
+    for i, values in enumerate(column_values):
+        numpy_array[i, :len(values)] = values
+    return numpy_array 
+    
+#----------------------------------------------
 def main():
     data1 = {'hacker_id' : [1,2,3,4],
              'name'      : ['John','Jane','Joe','Jim']
