@@ -23,11 +23,11 @@ def rank_serie(seri):
 
 #----------------------------------------------
 def basic_cummulative(table, index_col, col):
-    table.set_index('index_col', inplace = True)
+    copy = table.set_index(index_col)
     column_values = []
-    n = table.index.unique()
+    n = copy.index.unique()
     for idx in n:
-        values_serie = table.loc[idx, 'col']
+        values_serie = copy.loc[idx, col]
         if isinstance(values_serie, pd.Series):
             values_list = values_serie.tolist()
         else:
@@ -37,7 +37,7 @@ def basic_cummulative(table, index_col, col):
     numpy_array = np.zeros((len(n), max_length)) 
     for i, values in enumerate(column_values):
         numpy_array[i, :len(values)] = values
-    return numpy_array 
+    return numpy_array
     
 #----------------------------------------------
 def main():
