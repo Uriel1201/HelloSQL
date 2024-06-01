@@ -14,10 +14,10 @@ def desc_row_num(x):
     return row_n
 
 #----------------------------------------------
-def rank_serie(seri):
-    serie = np.array(seri)
-    copy = np.unique(serie)
-    count_list = [np.sum(copy >= s) for s in serie]
+def rank_serie(s):
+    s_array = np.array(s)
+    copy = np.unique(s_array)
+    count_list = [np.sum(copy >= s) for s in s_array]
     array_list = np.array(list(zip(serie, count_list)))
     return array_list
 
