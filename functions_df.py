@@ -33,11 +33,13 @@ def basic_cummulative(table, index_col, col):
         else:
             values_list = [values_serie]
         column_values.append(values_list)
-    max_length= max(len(v_l) for v_l in column_values)
-    numpy_array = np.zeros((len(n), max_length)) 
+    max_length = max(len(v_l) for v_l in column_values)
+    numpy_array = np.zeros((len(n), max_length))
     for i, values in enumerate(column_values):
         numpy_array[i, :len(values)] = values
-    return numpy_array
+    cumsum_array = np.cumsum(numpy_array, axis = 1)
+    cumsum_df = pd.DataFrame(cumsum_array, index = n)
+    return cumsum_df
     
 #----------------------------------------------
 def main():
