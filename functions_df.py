@@ -68,7 +68,10 @@ def main():
     print(submissions)
     print()
     scores = submissions['score']
+    copy_submissions = submissions.copy()
     score_ranks = pd.DataFrame(rank_array(scores), columns = ['score', 'rank'])
+    submissions.set_index('score', inplace = True)
+    score_rank.set_index('score', inplace = True)
     print("Adding a rank for every score")
     print("****************************")
     print(score_ranks)
