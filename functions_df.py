@@ -14,7 +14,7 @@ def desc_row_num(x):
     return row_n
 
 #----------------------------------------------
-def rank_serie(s):
+def rank_array(s):
     s_array = np.array(s)
     copy = np.unique(s_array)
     count_list = [np.sum(copy >= s) for s in s_array]
@@ -55,15 +55,25 @@ def main():
 
     hackers     = pd.DataFrame(data1)
     submissions = pd.DataFrame(data2)
-    submissions = submissions.sort_values(by = ['hacker_id', 'challenge_id', 'score'])
-    submissions['score_number'] = submissions.groupby(['hacker_id', 'challenge_id'])['score'].transform(row_num)
-    submissions['score_rank'] = submissions.groupby(['hacker_id', 'challenge_id'])['score'].transform(desc_row_num)
+    print("Dataframe Submissions")
+    print("****************************")
     print(submissions)
-    random_array = np.random.randint(1, 16, 30)
-    r = rank_serie(random_array)
-    r_R = pd.DataFrame(r, columns = ['score', 'rank'])
-    r_R = r_R.sort_values(by = 'score')
-    print(r_R)
+    submissions = submissions.sort_values(by = ['hacker_id', 'challenge_id', 'score'])
+    submissions['ascending_score'] = submissions.groupby(['hacker_id', 'challenge_id'])['score'].transform(row_num)
+    submissions['descending_score'] = submissions.groupby(['hacker_id', 'challenge_id'])['score'].transform(desc_row_num)
+    print("Adding rows to the scores grouped by hacker_id and challenge_id")
+    print("****************************")
+    print(submissions)
+    scores = submissions['score']
+    score_ranks = pd.DataFrame(rank_array(scores))
+    print("Adding a rank for every score")
+    print("****************************")
+    print(score_ranks)
+    numpy_submissions = basic_cummulative(submissions, 'hacker_id', 'score')
+    table2 = pd.DataFrame(numpy_submissions)
+    print("Cummulative_scores Dataframe by hacker_id")
+    print("****************************")
+    print(table2)
 #----------------------------------------------
 if __name__ == '__main__':
     main()
