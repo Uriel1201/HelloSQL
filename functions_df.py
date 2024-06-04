@@ -15,6 +15,7 @@ def desc_row_num(x):
 
 #----------------------------------------------
 def rank_array(Se):
+    Se.drop_duplicates(inplace = True)
     s_array = np.array(Se)
     copy = np.unique(s_array)
     count_list = [np.sum(copy >= s) for s in s_array]
