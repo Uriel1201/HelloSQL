@@ -68,13 +68,14 @@ def main():
     print(submissions)
     print()
     scores = submissions['score']
-    copy_submissions = submissions.copy()
+    copy_submissions = submissions[['hacker_id', 'score', 'challenge_id']]
     score_ranks = pd.DataFrame(rank_array(scores), columns = ['score', 'rank'])
     submissions.set_index('score', inplace = True)
-    score_rank.set_index('score', inplace = True)
+    score_ranks.set_index('score', inplace = True)
+    submissions_ranks = pd.concat([submissions, score_ranks], axis = 1, join = 'inner')
     print("Adding a rank for every score")
     print("****************************")
-    print(score_ranks)
+    print(submissions_ranks)
     print()
     numpy_submissions = basic_cummulative(submissions, 'hacker_id', 'score')
     table2 = pd.DataFrame(numpy_submissions)
