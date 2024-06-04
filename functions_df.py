@@ -67,7 +67,7 @@ def main():
     print(submissions)
     print()
     scores = submissions['score']
-    score_ranks = pd.DataFrame(rank_array(scores), columns = ['scores', 'rank'])
+    score_ranks = pd.DataFrame(rank_array(scores), columns = ['score', 'rank'])
     print("Adding a rank for every score")
     print("****************************")
     print(score_ranks)
