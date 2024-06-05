@@ -14,7 +14,8 @@ def desc_row_num(x):
     return row_n
 
 #----------------------------------------------
-def rank_array(Se):
+def rank_array(Ser):
+    Se = Ser.copy()
     Se.drop_duplicates(inplace = True)
     s_array = np.array(Se)
     copy = np.unique(s_array)
@@ -70,12 +71,10 @@ def main():
     scores = submissions['score']
     copy_submissions = submissions[['hacker_id', 'score', 'challenge_id']]
     score_ranks = pd.DataFrame(rank_array(scores), columns = ['score', 'rank'])
-    submissions.set_index('score', inplace = True)
-    score_ranks.set_index('score', inplace = True)
-    submissions_ranks = pd.concat([submissions, score_ranks], axis = 1, join = 'inner')
+    submission_ranks = pd.merge(copy_submissions, score_ranks, how = 'inner', on = 'score')
     print("Adding a rank for every score")
     print("****************************")
-    print(submissions_ranks)
+    print(submission_ranks)
     print()
     numpy_submissions = basic_cummulative(submissions, 'hacker_id', 'score')
     table2 = pd.DataFrame(numpy_submissions)
