@@ -41,7 +41,9 @@ def basic_cummulative(table, index_col, col):
         numpy_array[i, :len(values)] = values
     cumsum_array = np.cumsum(numpy_array, axis = 1)
     array_t = cumsum_array.T
-    cumsum_df = pd.DataFrame(array_t, columns = index = n)
+    col_list = n.tolist()
+    s_col = ['id_' + str(c) for c in col_list]
+    cumsum_df = pd.DataFrame(array_t, columns = s_col)
     return cumsum_df
     
 #----------------------------------------------
