@@ -28,3 +28,6 @@ try:
   cumm_salary = fdf.basic_cummulative(no_last_month, 'id', 'salary')
   cumm_salary
   cumm_salary.iloc[-1]
+  
+except SQLAlchemyError as e:
+  print(e)
