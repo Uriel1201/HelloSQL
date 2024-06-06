@@ -40,7 +40,8 @@ def basic_cummulative(table, index_col, col):
     for i, values in enumerate(column_values):
         numpy_array[i, :len(values)] = values
     cumsum_array = np.cumsum(numpy_array, axis = 1)
-    cumsum_df = pd.DataFrame(cumsum_array, index = n)
+    array_t = cumsum_array.T
+    cumsum_df = pd.DataFrame(array_t, columns = index = n)
     return cumsum_df
     
 #----------------------------------------------
