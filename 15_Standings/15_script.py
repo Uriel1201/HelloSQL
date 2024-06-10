@@ -10,9 +10,6 @@ include team name and points, and be
 ordered by decreasing points.
 """
 
-teams_p15
-matches_p15
-
 import pandas as pd
 import numpy  as np
 import cx_Oracle
@@ -46,3 +43,6 @@ try:
 
     results = pd.concat([teams, scores], axis = 1, join = 'inner')
     results.sort_values(by = 'score', ascending = False)
+
+except SQLAlchemyError as e:
+  print(e)
