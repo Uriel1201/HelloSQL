@@ -10,44 +10,39 @@ include team name and points, and be
 ordered by decreasing points.
 """
 
-import pandas as pd
-import numpy  as np
-
 teams_p15
 matches_p15
 
-data1 = {'team_id' : [1,2,3,4,5,6],
-         'team_name' : ['New York','Atlanta','Chicago','Toronto','Los Angeles','Seattle']
-        }
+import pandas as pd
+import numpy  as np
+import cx_Oracle
+import sqlalchemy
+from sqlalchemy.exc import SQLAlchemyError
 
-data2 = {'match_id'    : [1,2,3,4,5,6],
-         'host_team'   : [1,2,3,4,5,6],
-         'guest_team'  : [2,3,4,5,6,1],
-         'host_goals'  : [3,2,4,1,2,1],
-         'guest_goals' : [0,4,3,1,1,2]
-        }
+try:
+    engine = sqlalchemy.create_engine("oracle+cx_oracle://usr:pswd@localhost/?service_name=orclpdb1", arraysize=1000)
 
-teams   = pd.DataFrame(data1)
-matches = pd.DataFrame(data2)
+    table1 = """select * from teams_p15;"""
+    table2 = """select * from matches_p15"""
+    teams = pd.read_sql(table1, engine)
+    matches = pd.read_sql(table2, engine)
+    teams.set_index('team_id', inplace = True)
 
-teams.set_index('team_id', inplace = True)
+    host_matches = matches[['host_team', 'host_goals', 'guest_goals']].copy()
+    host_matches.rename(columns = {'host_team' : 'team_id'}, inplace = True)
+    host_matches['host_scores'] = np.where(host_matches['host_goals'] > host_matches['guest_goals'], 3 ,np.where(host_matches['host_goals'] == host_matches['guest_goals'], 1, 0))
 
-host_matches = matches[['host_team', 'host_goals', 'guest_goals']].copy()
-host_matches.rename(columns = {'host_team' : 'team_id'}, inplace = True)
-host_matches['host_scores'] = np.where(host_matches['host_goals'] > host_matches['guest_goals'], 3 ,np.where(host_matches['host_goals'] == host_matches['guest_goals'], 1, 0))
+    host_scores = pd.DataFrame(host_matches.groupby('team_id')['host_scores'].sum())
 
-host_scores = pd.DataFrame(host_matches.groupby('team_id')['host_scores'].sum())
+    guest_matches = matches[['guest_team', 'host_goals', 'guest_goals']].copy()
+    guest_matches.rename(columns = {'guest_team' : 'team_id'}, inplace = True)
+    guest_matches['guest_scores'] = np.where(guest_matches['guest_goals'] > guest_matches['host_goals'], 3 ,np.where(guest_matches['guest_goals'] == guest_matches['host_goals'], 1, 0))
 
-guest_matches = matches[['guest_team', 'host_goals', 'guest_goals']].copy()
-guest_matches.rename(columns = {'guest_team' : 'team_id'}, inplace = True)
-guest_matches['guest_scores'] = np.where(guest_matches['guest_goals'] > guest_matches['host_goals'], 3 ,np.where(guest_matches['guest_goals'] == guest_matches['host_goals'], 1, 0))
+    guest_scores = pd.DataFrame(guest_matches.groupby('team_id')['guest_scores'].sum())
 
-guest_scores = pd.DataFrame(guest_matches.groupby('team_id')['guest_scores'].sum())
+    scores = pd.concat([host_scores, guest_scores], axis = 1, join = 'inner')
+    scores = pd.DataFrame(scores['host_scores'] + scores['guest_scores'])
+    scores.rename(columns = {0 : 'score'}, inplace = True)
 
-scores = pd.concat([host_scores, guest_scores], axis = 1, join = 'inner')
-
-scores = pd.DataFrame(scores['host_scores'] + scores['guest_scores'])
-scores.rename(columns = {0 : 'score'}, inplace = True)
-results = pd.concat([teams, scores], axis = 1, join = 'inner')
-
-results.sort_values(by = 'score', ascending = False)
+    results = pd.concat([teams, scores], axis = 1, join = 'inner')
+    results.sort_values(by = 'score', ascending = False)
